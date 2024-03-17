@@ -1,0 +1,150 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Author {
+  _id: ID!
+  name: String!
+  email: String!
+  phone: String!
+  country: String!
+  bookIds: [Book!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Book {
+  _id: ID!
+  name: String!
+  genre: String!
+  publishedYear: String!
+  authorIds: [Author!]!
+  rentalIds: [Rental!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Rental {
+  _id: ID!
+  dateRented: DateTime!
+  userId: User!
+  bookIds: [Book!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type User {
+  _id: ID!
+  name: String!
+  email: String!
+  phone: String!
+  rentalIds: [Rental!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Query {
+  users(params: FindUserInput!): [User!]!
+  user(params: FindUserInput!): User!
+  authors(params: FindAuthorInput!): [Author!]!
+  author(params: FindAuthorInput!): Author!
+  books(params: FindBookInput!): [Book!]!
+  book(params: FindBookInput!): Book!
+  rentals(params: FindRentalInput!): [Rental!]!
+  rental(params: FindRentalInput!): Rental!
+}
+
+input FindUserInput {
+  _id: String
+  name: String
+  email: String
+  phone: String
+}
+
+input FindAuthorInput {
+  _id: String
+  name: String
+  email: String
+  phone: String
+  country: String
+}
+
+input FindBookInput {
+  _id: String
+  name: String
+  genre: String
+  publishedYear: String
+}
+
+input FindRentalInput {
+  _id: String
+  dateRented: DateTime
+}
+
+type Mutation {
+  createUser(params: CreateUserInput!): User!
+  updateUser(id: String!, params: UpdateUserInput!): User!
+  deleteUser(id: String!): User!
+  createAuthor(params: CreateAuthorInput!): Author!
+  updateAuthor(id: String!, params: UpdateAuthorInput!): Author!
+  deleteAuthor(id: String!): Author!
+  createBook(params: CreateBookInput!): Book!
+  updateBook(id: String!, params: UpdateBookInput!): Book!
+  deleteBook(id: String!): Book!
+  createRental(params: CreateRentalInput!): Rental!
+  deleteRental(id: String!): Rental!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  phone: String!
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  phone: String
+  rentalIds: [ID!]
+}
+
+input CreateAuthorInput {
+  name: String!
+  email: String!
+  phone: String!
+  country: String!
+  bookIds: [ID!]
+}
+
+input UpdateAuthorInput {
+  name: String
+  email: String
+  phone: String
+  country: String
+  bookIds: [ID!]
+}
+
+input CreateBookInput {
+  name: String!
+  genre: String!
+  publishedYear: String!
+}
+
+input UpdateBookInput {
+  name: String
+  genre: String
+  publishedYear: String
+  authorIds: [ID!]
+  rentalIds: [ID!]
+}
+
+input CreateRentalInput {
+  dateRented: DateTime
+  userId: ID
+  bookIds: [ID!]
+}
