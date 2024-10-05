@@ -63,7 +63,7 @@ export class AuthorsService {
 
     const author = await this.authorModel
       .updateOne(
-        { _id: id },
+        { _id: new Types.ObjectId(id) },
         { ...params, $push: { bookIds: { $each: bookIds } } },
       )
       .exec();

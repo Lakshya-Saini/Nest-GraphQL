@@ -7,6 +7,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
 import { AuthorsModule } from './authors/authors.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { BooksModule } from './books/books.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     AuthorsModule,
+    BooksModule,
   ],
   controllers: [AppController],
   providers: [AppService],

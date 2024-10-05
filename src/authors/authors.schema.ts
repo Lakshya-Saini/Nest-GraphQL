@@ -1,6 +1,7 @@
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
+import { Book } from '../books/books.schema';
 
 /**
   This create a type AuthorsDocument, which is a combination of Author class and 
@@ -36,10 +37,9 @@ export class Author {
   @Field()
   country: string;
 
-  /** Will add this field after adding Books model */
-  // @Prop()
-  // @Field(() => [Book])
-  // bookIds: Book[];
+  @Prop()
+  @Field(() => [Book])
+  bookIds: Book[];
 
   @Prop()
   @Field()

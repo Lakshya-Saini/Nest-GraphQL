@@ -1,4 +1,11 @@
-import { Args, Resolver, Query, Mutation } from '@nestjs/graphql';
+import {
+  Args,
+  Resolver,
+  Query,
+  Mutation,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import {
   Author,
   CreateAuthorInput,
@@ -6,6 +13,7 @@ import {
   UpdateAuthorInput,
 } from './authors.schema';
 import { AuthorsService } from './authors.service';
+import { BooksService } from '../books/books.service';
 
 /**
   The resolver decorator marks this class as a GraphQL resolver and specifies that 
@@ -14,7 +22,10 @@ import { AuthorsService } from './authors.service';
 @Resolver(() => Author)
 export class AuthorsResolver {
   /** creating instance for author service */
-  constructor(private readonly authorService: AuthorsService) {}
+  constructor(
+    private readonly authorService: AuthorsService,
+    private readonly booksService: BooksService,
+  ) {}
 
   @Query(() => [Author], { name: 'authors' })
   async getAllAuthors(
@@ -50,5 +61,10 @@ export class AuthorsResolver {
   @Mutation(() => Author)
   async deleteAuthor(@Args('id') id: string) {
     return this.authorService.deleteAuthor(id);
+  }
+
+  @ResolveField(() => Author)
+  async bookIds(@Parent() parent: Author) {
+    return await this.booksService.findByAuthorId(parent._id);
   }
 }
