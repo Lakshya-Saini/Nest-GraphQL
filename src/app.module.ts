@@ -8,6 +8,7 @@ import { join } from 'path';
 import { AuthorsModule } from './authors/authors.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { BooksModule } from './books/books.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { BooksModule } from './books/books.module';
     }),
     AuthorsModule,
     BooksModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
