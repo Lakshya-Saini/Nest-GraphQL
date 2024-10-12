@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Rental } from '../rentals/rentals.schema';
 
 export type UserDocument = User & mongoose.Document;
 
@@ -22,9 +23,9 @@ export class User {
   @Field()
   phone: string;
 
-  //   @Prop()
-  //   @Field(() => [Rental])
-  //   rentalIds: Rental[];
+  @Prop()
+  @Field(() => [Rental])
+  rentalIds: Rental[];
 
   @Prop()
   @Field()

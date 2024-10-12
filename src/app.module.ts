@@ -9,6 +9,7 @@ import { AuthorsModule } from './authors/authors.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { BooksModule } from './books/books.module';
 import { UsersModule } from './users/users.module';
+import { RentalsModule } from './rentals/rentals.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { UsersModule } from './users/users.module';
     AuthorsModule,
     BooksModule,
     UsersModule,
+    RentalsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

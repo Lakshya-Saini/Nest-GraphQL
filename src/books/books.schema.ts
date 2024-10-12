@@ -2,6 +2,7 @@ import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { Author } from '../authors/authors.schema';
+import { Rental } from '../rentals/rentals.schema';
 
 export type BookDocument = Book & mongoose.Document;
 
@@ -27,10 +28,9 @@ export class Book {
   @Field(() => [Author])
   authorIds: Author[];
 
-  /** Will add this field after adding Rental model */
-  // @Prop()
-  // @Field(() => [Rental])
-  // rentalIds: Rental[];
+  @Prop()
+  @Field(() => [Rental])
+  rentalIds: Rental[];
 
   @Prop()
   @Field()
